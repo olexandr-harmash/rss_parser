@@ -13,12 +13,13 @@ module.exports.register = async function(dto) {
   user.email = dto.email;
 
   user.setPassword(dto.password);
+  try {
+    await user.save();
+  } catch(err) {
+    
+  }
 
-  await user.save();
-
-  const token = user.generateJwt();
-
-  return token;
+  return user.generateJwt();
 };
 
 module.exports.login = function(user) {
