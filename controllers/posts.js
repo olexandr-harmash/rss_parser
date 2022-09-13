@@ -15,6 +15,7 @@ module.exports.postsCreate = async function(req, res, next) {
             "message": result
         });
     } catch(err) {
+        console.log(err)
         next(err);
     } 
 };
@@ -45,6 +46,7 @@ module.exports.postsReadMany = async function(req, res, next) {
         console.log('params ok')
         const result = await PostService.postsReadMany(req.query.offset, req.query.limit)
         console.log('posts ok')
+        
         response.sendJSONresponse(res, 200, {
             "message": result
         });

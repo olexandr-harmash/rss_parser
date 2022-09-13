@@ -23,9 +23,8 @@ var postSchema = new mongoose.Schema({
     },
     guid: {
         type: String,
-        unique: true,
-        required: true
-    },
+        unique: true
+    }, // delete guid becouse we use _id but if we need guid for platform were we take this maybe it is stay
     categories: {
         type: [String],
         required: true

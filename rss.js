@@ -14,11 +14,11 @@ async function parseRss(url) {
   return feed
 };
 
-const job = new CronJob('0 */1 * * * *', function() {
+const job = new CronJob('0 */30 * * * *', function() {
     // const d = new Date();
 	// console.log('Midnight:', d);
     parseRss(process.env.RSS_URL)
-    .then((data) => { console.log(data.items); PostService.postsUpdateMany(data.items)})
+    .then((data) => {PostService.postsUpdateMany(data.items)})
     .catch((err) => console.log(err))
 });
 job.start();

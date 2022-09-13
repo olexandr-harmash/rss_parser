@@ -10,6 +10,7 @@ module.exports.postsCreate =  async function(posts) {
     try {
         result = await Post.insertMany(posts);
     } catch (err) {
+        console.log(err)
         throw error.checkMongoError(err);
     }
 
