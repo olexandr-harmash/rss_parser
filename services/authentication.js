@@ -1,13 +1,14 @@
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const error = require('../config/errors');
 
-var sendJSONresponse = function(res, status, content) {
+const sendJSONresponse = function (res, status, content) {
   res.status(status);
   res.json(content);
 };
 
-module.exports.register = async function(dto) {
-  var user = new User();
+module.exports.register = async function (dto) {
+  const user = new User();
 
   user.name = dto.name;
   user.email = dto.email;
@@ -15,13 +16,13 @@ module.exports.register = async function(dto) {
   user.setPassword(dto.password);
   try {
     await user.save();
-  } catch(err) {
-    
+  } catch (err) {
+    throw error.checkMongoError(err)
   }
 
   return user.generateJwt();
 };
 
-module.exports.login = function(user) {
-    return user.generateJwt();
+module.exports.login = function (user) {
+  return user.generateJwt();
 };

@@ -20,9 +20,10 @@
       {{ product.rating.rate | number:'1.2-4' }}
     </span></p>
   </div> -->
-  <h2 class="mb-2 text-md text-center">{{ post.creator }} {{post.pubDate}}</h2>
+  <h2 class="mb-2 text-md text-center">
+    {{ post.creator }} {{ post.pubDate }}
+  </h2>
   <h2 class="mb-2 text-md text-center">{{ post.title }}</h2>
   <h2 class="mb-2 text-md text-center">{{ post.link }}</h2>
-  <div [innerHTML]="post.content">
-  </div>
+  <div [innerHTML]="post.content"></div>
 </div>

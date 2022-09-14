@@ -5,56 +5,49 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-post-page',
   templateUrl: './post-page.component.html',
-  styleUrls: ['./post-page.component.scss']
+  styleUrls: ['./post-page.component.scss'],
 })
 export class PostPageComponent implements OnInit {
   constructor(public authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  isLogging = true
+  isLogging = true;
 
   form = new FormGroup({
-    email: new FormControl<string>('',  [
-      Validators.required,
-      Validators.minLength(6)
-    ]),
-    password: new FormControl<string>('',  [
-      Validators.required,
-      Validators.minLength(8)
-    ]),
-    name: new FormControl<string>('',  [
-      Validators.required,
-      Validators.minLength(6)
-    ]),
-  })
+    email: new FormControl<string>(''),
+    password: new FormControl<string>(''),
+    name: new FormControl<string>(''),
+  });
 
   get password() {
-    return this.form.controls.password
+    return this.form.controls.password;
   }
   get email() {
-    return this.form.controls.email
+    return this.form.controls.email;
   }
   get name() {
-    return this.form.controls.name
+    return this.form.controls.name;
   }
 
   loginUser() {
-    this.authService.login({
-      email: this.email.value as string,
-      password: this.password.value as string
-    }).subscribe(() => {
-      console.log("sususus")
-    })
+    this.authService
+      .login({
+        email: this.email.value as string,
+        password: this.password.value as string,
+      })
+      .subscribe(data => {
+        console.log(data);
+      });
   }
 
   registerUser() {
-    this.authService.register({
-      email: this.email.value as string,
-      password: this.password.value as string,
-      name: this.name.value as string
-    }).subscribe(() => {
-      console.log("sususus")
-    })
+    this.authService
+      .register({
+        email: this.email.value as string,
+        password: this.password.value as string,
+        name: this.name.value as string,
+      })
+      .subscribe(() => {});
   }
 }

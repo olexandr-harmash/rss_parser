@@ -1,28 +1,28 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {IProduct} from '../models/product'
+import { IProduct } from '../models/product';
 
 @Pipe({
-  name: 'filterProducts'
+  name: 'filterProducts',
 })
 export class FilterProductsPipe implements PipeTransform {
-
   transform(products: IProduct[], search: string): IProduct[] {
-    if (search.length === 0) return products
-    return products.filter(p => p.title.toLowerCase().includes(search.toLowerCase()))
+    if (search.length === 0) return products;
+    return products.filter(p =>
+      p.title.toLowerCase().includes(search.toLowerCase())
+    );
   }
-
 }
 
 import { IPost } from '../models/posts';
 
 @Pipe({
-  name: 'filterPosts'
+  name: 'filterPosts',
 })
 export class FilterPostsPipe implements PipeTransform {
-
   transform(posts: IPost[], search: string): IPost[] {
-    if (search.length === 0) return posts
-    return posts.filter(p => p.title.toLowerCase().includes(search.toLowerCase()))
+    if (search.length === 0) return posts;
+    return posts.filter(p =>
+      p.title.toLowerCase().includes(search.toLowerCase())
+    );
   }
-
 }

@@ -1,34 +1,36 @@
 <!-- change dublicated template or write independ module for every form -->
-<form [formGroup]="form" (ngSubmit)="loginUser()" *ngIf="isLogging; else isRegister">
+<form
+  [formGroup]="form"
+  (ngSubmit)="loginUser()"
+  *ngIf="isLogging; else isRegister">
   <input
     type="text"
     class="mb-2 border py-2 px-4 w-full"
     placeholder="email"
-    formControlName="email"
-  >
+    formControlName="email" />
   <p
     class="text-red-600 font-medium mb-2"
-    *ngIf="email.errors?.minlength && email.touched"
-  >Please fill email field width min length. Now {{ email.value }}</p>
+    *ngIf="email.errors?.minlength && email.touched">
+    Please fill email field width min length. Now {{ email.value }}
+  </p>
 
   <input
     type="text"
     class="mb-2 border py-2 px-4 w-full"
     placeholder="password"
-    formControlName="password"
-  >
+    formControlName="password" />
   <p
     class="text-red-600 font-medium mb-2"
-    *ngIf="password.errors?.minlength && password.touched"
-  >Please fill password field width min length. Now {{ password.value }}</p>
+    *ngIf="password.errors?.minlength && password.touched">
+    Please fill password field width min length. Now {{ password.value }}
+  </p>
 
   <button
     class="rounded-full bg-red-700 text-white"
-    (click)="isLogging=!isLogging"
-  >To Register</button>
-  <button
-    class="rounded-full bg-red-700 text-white"
-  >Request</button>
+    (click)="isLogging = !isLogging">
+    To Register
+  </button>
+  <button class="rounded-full bg-red-700 text-white">Request</button>
 </form>
 
 <ng-template #isRegister>
@@ -37,41 +39,39 @@
       type="text"
       class="mb-2 border py-2 px-4 w-full"
       placeholder="email"
-      formControlName="email"
-    >
+      formControlName="email" />
     <p
       class="text-red-600 font-medium mb-2"
-      *ngIf="email.errors?.minlength && email.touched"
-    >Please fill email field width min length. Now {{ email.value }}</p>
+      *ngIf="email.errors?.minlength && email.touched">
+      Please fill email field width min length. Now {{ email.value }}
+    </p>
 
     <input
       type="text"
       class="mb-2 border py-2 px-4 w-full"
       placeholder="password"
-      formControlName="password"
-    >
+      formControlName="password" />
     <p
       class="text-red-600 font-medium mb-2"
-      *ngIf="password.errors?.minlength && password.touched"
-    >Please fill password field width min length. Now {{ password.value }}</p>
+      *ngIf="password.errors?.minlength && password.touched">
+      Please fill password field width min length. Now {{ password.value }}
+    </p>
     <input
       type="text"
       class="mb-2 border py-2 px-4 w-full"
       placeholder="name"
-      formControlName="name"
-    >
+      formControlName="name" />
     <p
       class="text-red-600 font-medium mb-2"
-      *ngIf="name.errors?.minlength && name.touched"
-    >Please fill name field width min length. Now {{ name.value }}</p>
+      *ngIf="name.errors?.minlength && name.touched">
+      Please fill name field width min length. Now {{ name.value }}
+    </p>
 
     <button
       class="rounded-full bg-red-700 text-white"
-      (click)="isLogging=!isLogging"
-    >To Login</button>
-    <button
-      class="rounded-full bg-red-700 text-white"
-    >Request</button>
+      (click)="isLogging = !isLogging">
+      To Login
+    </button>
+    <button class="rounded-full bg-red-700 text-white">Request</button>
   </form>
 </ng-template>
-
