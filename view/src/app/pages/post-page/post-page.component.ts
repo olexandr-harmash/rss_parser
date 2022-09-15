@@ -1,53 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { ModalService } from '../../services/modal.service';
+import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
-  selector: 'app-post-page',
+  selector: 'app-oost-page',
   templateUrl: './post-page.component.html',
   styleUrls: ['./post-page.component.scss'],
 })
 export class PostPageComponent implements OnInit {
-  constructor(public authService: AuthService) {}
+  title = 'rss admin interface';
 
-  ngOnInit(): void {}
+  loading = false;
 
-  isLogging = true;
+  term = '';
 
-  form = new FormGroup({
-    email: new FormControl<string>(''),
-    password: new FormControl<string>(''),
-    name: new FormControl<string>(''),
-  });
+  constructor(
+    public postsService: PostsService,
+    public modalService: ModalService
+  ) {}
 
-  get password() {
-    return this.form.controls.password;
-  }
-  get email() {
-    return this.form.controls.email;
-  }
-  get name() {
-    return this.form.controls.name;
+  ngOnInit(): void {
+    this.loading = true;
+    this.postsService.getAll().subscribe(() => {
+      this.loading = false;
+    });
   }
 
-  loginUser() {
-    this.authService
-      .login({
-        email: this.email.value as string,
-        password: this.password.value as string,
-      })
-      .subscribe(data => {
-        console.log(data);
-      });
-  }
-
-  registerUser() {
-    this.authService
-      .register({
-        email: this.email.value as string,
-        password: this.password.value as string,
-        name: this.name.value as string,
-      })
-      .subscribe(() => {});
+  //may add validation like formGroup but for simple
+  getAll() {
+    this.loading = true;
+    this.postsService.getAll(10, 0).subscribe(() => {
+      this.loading = false;
+    });
   }
 }

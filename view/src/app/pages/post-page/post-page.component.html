@@ -1,52 +1,27 @@
-<div class="login-form" *ngIf="isLogging; else isRegister">
-  <form [formGroup]="form">
-    <h1>Login</h1>
-    <div class="content">
-      <div class="input-field">
-        <input
-          type="email"
-          placeholder="Email"
-          autocomplete="nope"
-          formControlName="email" />
-      </div>
-      <div class="input-field">
-        <input
-          type="password"
-          placeholder="Password"
-          autocomplete="new-password"
-          formControlName="password" />
-      </div>
-      <a class="link" (click)="loginUser()">Send Data ;)</a>
-    </div>
-    <div class="action">
-      <button (click)="isLogging = false">Register</button>
-      <button (click)="isLogging = true">Sign in</button>
-    </div>
-  </form>
+<h1 class="font-bold mb-2 text-center text-lg">{{ title | titlecase }}</h1>
+
+<input
+  type="text"
+  class="mb-2 border py-2 px-4 w-full"
+  placeholder="Filter products..."
+  [(ngModel)]="term" />
+
+<p *ngIf="loading" class="text-center text-lg">Loading...</p>
+
+<div *ngIf="postsService.posts">
+  <app-post
+    *ngFor="let post of postsService.posts | filterPosts: term; let i = index"
+    [post]="post"></app-post>
 </div>
-<ng-template #isRegister>
-  <div class="login-form">
-    <form [formGroup]="form">
-      <h1>Register</h1>
-      <div class="content">
-        <div class="input-field">
-          <input type="email" placeholder="Email" formControlName="email" />
-        </div>
-        <div class="input-field">
-          <input
-            type="password"
-            placeholder="Password"
-            formControlName="password" />
-        </div>
-        <div class="input-field">
-          <input type="name" placeholder="Name" formControlName="name" />
-        </div>
-        <a class="link" (click)="registerUser()">Send Data ;)</a>
-      </div>
-      <div class="action">
-        <button (click)="isLogging = false">Register</button>
-        <button (click)="isLogging = true">Sign in</button>
-      </div>
-    </form>
-  </div>
-</ng-template>
+
+<app-modal *ngIf="modalService.isVisible$ | async" title="Create new Product">
+  <app-create-post></app-create-post>
+</app-modal>
+
+<button
+  class="rounded bg-blue-700 text-white fixed right-5 bottom-5 py-2 px-4"
+  (click)="modalService.open()">
+  +
+</button>
+
+<app-pagination></app-pagination>

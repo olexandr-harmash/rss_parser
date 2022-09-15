@@ -4,11 +4,11 @@ import { ModalService } from '../../services/modal.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
-  selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.scss'],
+  selector: 'app-create-post',
+  templateUrl: './create-post.component.html',
+  styleUrls: ['./create-post.component.scss'],
 })
-export class CreateProductComponent implements OnInit {
+export class CreatePostComponent implements OnInit {
   constructor(
     private postService: PostsService,
     private modalService: ModalService

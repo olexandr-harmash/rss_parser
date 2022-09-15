@@ -1,0 +1,52 @@
+<div class="login-form" *ngIf="isLogging; else isRegister">
+  <form [formGroup]="form">
+    <h1>Login</h1>
+    <div class="content">
+      <div class="input-field">
+        <input
+          type="email"
+          placeholder="Email"
+          autocomplete="nope"
+          formControlName="email" />
+      </div>
+      <div class="input-field">
+        <input
+          type="password"
+          placeholder="Password"
+          autocomplete="new-password"
+          formControlName="password" />
+      </div>
+      <a class="link" (click)="loginUser()">Send Data ;)</a>
+    </div>
+    <div class="action">
+      <button (click)="isLogging = false">Register</button>
+      <button (click)="isLogging = true">Sign in</button>
+    </div>
+  </form>
+</div>
+<ng-template #isRegister>
+  <div class="login-form">
+    <form [formGroup]="form">
+      <h1>Register</h1>
+      <div class="content">
+        <div class="input-field">
+          <input type="email" placeholder="Email" formControlName="email" />
+        </div>
+        <div class="input-field">
+          <input
+            type="password"
+            placeholder="Password"
+            formControlName="password" />
+        </div>
+        <div class="input-field">
+          <input type="name" placeholder="Name" formControlName="name" />
+        </div>
+        <a class="link" (click)="registerUser()">Send Data ;)</a>
+      </div>
+      <div class="action">
+        <button (click)="isLogging = false">Register</button>
+        <button (click)="isLogging = true">Sign in</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

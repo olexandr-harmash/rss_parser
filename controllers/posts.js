@@ -23,15 +23,13 @@ module.exports.postsReadOne = async function (req, res, next) {
     if (!req.params && !req.params.id) {
       throw error.badRequest();
     }
-    console.log('params ok');
 
     const result = await PostService.postsReadOne(req.params.id);
-    console.log('result ok');
+
     response.sendJSONresponse(res, 200, {
       message: result,
     });
   } catch (err) {
-    console.log('err');
     next(err);
   }
 };

@@ -2,10 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   HttpClient,
   HttpErrorResponse,
-  HttpParams,
 } from '@angular/common/http';
-import { catchError, delay, Observable, retry, tap, throwError } from 'rxjs';
-import { IProduct } from '../models/product';
+import { catchError, Observable, retry, tap, throwError } from 'rxjs';
 import { ErrorService } from './error.service';
 import { IToken, IUserLogin, IUserRegister } from '../models/user';
 import { CookieService } from './cookie-service.service';
